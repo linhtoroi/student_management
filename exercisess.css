@@ -1,0 +1,79 @@
+table {
+    margin: 200px 175px;
+    width: 80%;
+    border: 2px solid rgb(199, 175, 175, 0.3);
+}
+table, th, td {
+    border-collapse: collapse;
+    font-size: 20px;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+th, td {
+    padding: 15px;
+    text-align: left;
+}
+#t01 tr:nth-child(even) {
+    background-color:  floralwhite ;
+    color: rgb(88, 60, 60);
+}
+#t01 a:link {
+    color:  rgb(62, 59, 70) ;
+    text-decoration: none;
+}
+
+#t01 a:hover{
+    color:  rgb(62, 59, 70) ;
+    text-decoration: none;
+}
+#t01 tr:nth-child(odd) {
+    background-color: rgb(199, 175, 175, 0.3);
+    color: rgb(88, 60, 60);
+}
+#t01 th {
+    background-color: rgb(199, 175, 175);
+}  
+
+.edit {
+    list-style-type: none;
+    margin: 10px;
+    padding: 0;
+    overflow: hidden;
+    font-size: 24px;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    color: mediumpurple;
+}
+.upload{
+    border: none;
+    list-style-type: none;
+    margin: 10px;
+    padding: 0;
+    overflow: hidden;
+    font-size: 70px;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    color: black;
+    background-color: floralwhite;
+    /* background: #ccc url('icon.png') no-repeat top left; */
+    float: right;
+    background-image:url('image/cloud-computing.png');
+    background-size: 77px 74px;
+}
+.button{
+    border: none;
+    list-style-type: none;
+    /* margin-left: 200px; */
+    /* margin-top: 100px; */
+    padding: 0px;
+    overflow: hidden;
+    font-size: 30px;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    color: black;
+    background-color: floralwhite;
+}
+.inputfile {
+    width: 0.1px;
+    height: 0.1px;
+    opacity: 0;
+    overflow: hidden;
+    position: absolute;
+    z-index: -1;
+}

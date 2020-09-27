@@ -1,0 +1,28 @@
+ul {
+    list-style-type: none;
+    margin: 0px;
+    border-bottom: 30px solid floralwhite;
+    padding: 10;
+    overflow: hidden;
+    background-color: thistle;
+    font-size: 50px;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    color: floralwhite;
+}
+li {
+    float: left;
+}
+
+li a {
+display: block;
+color: floralwhite;
+text-align: center;
+padding: 14px 16px;
+text-decoration: none;
+
+}
+
+li a:hover:not(.active) {
+background-color: floralwhite;
+color:thistle;
+}

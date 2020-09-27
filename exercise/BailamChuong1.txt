@@ -1,0 +1,63 @@
+Bài tập số 1
+Bài làm:
+Bài 1. Cài đặt nhúng OpenGL vào DevC++ như sau:
+Với Win32bit:
+1.Cài đặt DevC và giải nén thư mục glutming.zip
+2.Copy tệp glut32.dll vào C:\Windows\System32\(với win 7 32 bit)
+3.Copy các tệp trong thư mục lib vào C:\program files\Dev-Cpp\MinGW64\x86_64_w64-
+ming32/lib32 và thư mục C:\program files\Dev-Cpp\MinGW64\x86_64_w64-ming32/lib
+
+4.Copy các tệp trong thư mục Include\GL vào C:\program files\Dev-
+Cpp\MinGW64\x86_64_w64-ming32\include\GL
+
+Tạo một đối tượng trong DevC
+− Chọn New/project/empty project/c project và tạo tên file tuỳ ý.
+− Kích chuột phải vào project vừa tạo, chọn new file.
+− Kích chuột phải vào project1/ project options chọn tab Prameters/add library or object
+chọn các file trong đường dẫn sau C:\program files\Dev-Cpp\MinGW64\x86_64_w64-
+ming32/lib32 bao gồm libopengl32.a, libglu32.a, libglut32.a
+Với Win64bit
+1. Cài đặt DevC và giải nén thư mục freeglut.zip
+2. Copy tệp freeeglut.dll vào C:\Windows\System32\ và sysWOW64. Copy các tệp trong thư
+mục lib vào C:\program files\Dev-Cpp\MinGW64\x86_64_w64-ming32/lib32 và thư mục
+C:\program files\Dev-Cpp\MinGW64\x86_64_w64-ming32/lib
+
+5. Copy các tệp trong thư mục Include\GL vào C:\program files\Dev-
+Cpp\MinGW64\x86_64_w64-ming32\include\GL
+
+Tạo một đối tượng trong DevC
+− Chọn New/project/empty project/c project và tạo tên file tuỳ ý.
+− Kích chuột phải vào project vừa tạo, chọn new file.
+− Kích chuột phải vào project1/ project options chọn tab Prameters/add library or object,
+gõ bổ sung các thư viện: -lopengl32
+-lfreeglut
+-lglu32
+
+Sau đó sử dụng file vidu.txt để kiểm tra việc kết nối chương trình.
+Bài 2
+a. Dựa trên nội dung chương trình vidu.txt, cài đặt thuật toán Bresenham/MidPoint cho
+đường thẳng 0 k  1, với thuộc tính độ dày 10, nét đứt 10-10.
+
+b. Phát triển tiếp chương trình cho hệ số góc 1  k   có thuộc tính độ dày nét đứt.
+c. Cài đặt chương trình vẽ đường thẳng với hệ số góc bất kì (xét 6 trường hợp còn lại của
+hệ số góc k)
+Đoạn mã lệnh tham khảo về nét đứt đường thẳng:
+unsigned long pattern =0xff00ff00;
+unsigned long mask =0x80000000;
+int x,y,dy,dx;float d; dx=x2-x1;dy=y2-y1;
+x=x1;y=y1;d=2*dy-dx;;
+while(x<=x2){
+int j=-3;
+mask=mask? mask : 0x80000000;
+if(d<0) d=d+2*dy;
+else {
+d=d+2*dy-2*dx;
+y++;
+}
+if (pattern&mask) glVertex2f(x,y);
+x++;
+mask>>=1;
+}
+Bài 3
+Viết chương trình OpenGl thực hiện chức năng sau: Khi kích chuột vào hai điểm bất kì trên
+màn hình, chương trình sẽ thực hiện vẽ một đường thẳng nối hai điểm đó
