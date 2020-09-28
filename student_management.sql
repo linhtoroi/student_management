@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Sep 28, 2020 at 12:51 AM
+-- Generation Time: Sep 28, 2020 at 09:26 AM
 -- Server version: 10.4.14-MariaDB
 -- PHP Version: 7.4.10
 
@@ -41,7 +41,9 @@ INSERT INTO `challenges` (`challenge`, `account`, `hint`) VALUES
 (1, '1000', 'Người Việt Nam đầu tiên đặt chân lên mặt trăng'),
 (6, '1000', 'Thành phố xanh hòa bình Soi bóng dòng sông đổ Lịch sư ngàn năm qua Bao dấu son còn đó Đây Ba Đình , Đống Đa Đây Hồ Gươm , Tháp Bút Mãi mãi bản hùng ca ?'),
 (7, '1000', 'Thủ đô của nước Việt Nam'),
-(8, '1000', 'Thủ đô của nước Việt Nam');
+(8, '1000', 'Thủ đô của nước Việt Nam'),
+(10, '1000', 'Thủ đô của nước Việt Nam'),
+(11, '1000', 'Thủ đô của nước Việt Nam');
 
 -- --------------------------------------------------------
 
@@ -64,7 +66,8 @@ CREATE TABLE `exercise` (
 INSERT INTO `exercise` (`account`, `codeOfExercise`, `summarise`, `fileName`, `fileEnding`) VALUES
 ('1000', 10, 'haha', 'BaitapChuong1.txt', 'text/plain'),
 ('1000', 11, 'haha', 'Ha Noi.txt', 'text/plain'),
-('1000', 12, 'haha', 'hahaha.txt', 'text/plain');
+('1000', 12, 'haha', 'hahaha.txt', 'text/plain'),
+('1000', 13, 'haha', 'BaitapChuong1 (1).txt', 'text/plain');
 
 -- --------------------------------------------------------
 
@@ -86,8 +89,7 @@ CREATE TABLE `homework` (
 --
 
 INSERT INTO `homework` (`accountStudent`, `codeOfExercise`, `completedExercise`, `time`, `mark`, `fileEnding`) VALUES
-('18020758', 10, 'Ha Noi.txt', '2020-09-27 20:58:36', NULL, 'text/plain'),
-('18020758', 11, 'hahaha.txt', '2020-09-27 21:42:10', NULL, 'text/plain');
+('18020758', 10, 'Ha Noi (1).txt', '2020-09-28 06:01:20', NULL, 'text/plain');
 
 -- --------------------------------------------------------
 
@@ -107,8 +109,8 @@ CREATE TABLE `message` (
 --
 
 INSERT INTO `message` (`accountReceiver`, `accountSender`, `message`, `fileEnding`) VALUES
-('18020759', '18020758', '18020759_18020758.txt', 'text/plain'),
-('18020758', '1000', '1801_1000.txt', 'text/plain');
+('18101001', '18020758', '18020762_18020758.txt', 'text/plain'),
+('18020758', '1000', '18020758_1000.txt', 'text/plain');
 
 -- --------------------------------------------------------
 
@@ -126,17 +128,14 @@ CREATE TABLE `person` (
 --
 
 INSERT INTO `person` (`account`, `passwordOfUser`) VALUES
+('', ''),
 ('1000', '1000abc'),
 ('1001', '1001abcdefgh'),
-('1111', 'hhiiii'),
+('18020750', 'nhungnhung'),
 ('18020758', 'hihihi'),
 ('18020759', 'jdgsfhjgsa'),
-('18020760', 'hihihi'),
-('18020761', 'hihihi'),
-('18020762', 'hihi'),
-('18020763', 'hihihi'),
-('1802078', 'hxhhxh'),
-('18020799', 'hihihi');
+('18101001', 'hihi'),
+('1990000', 'hihihidnjhfjk');
 
 -- --------------------------------------------------------
 
@@ -156,11 +155,11 @@ CREATE TABLE `student` (
 --
 
 INSERT INTO `student` (`account`, `email`, `fullName`, `phoneNumber`) VALUES
-('18020758', 'linhhaha@gmail.com', 'Hoàng Linh', 909090),
+('18020750', 'nhungnhung@gmail.com', 'Cao Cẩm Nhung', 90910921),
+('18020758', 'linhlinh@gmail.com', 'Hoàng Phương Linh', 911782128),
 ('18020759', 'hangnguyenthi@gmail.com', 'Nguyễn Thị Hằng', 900678910),
-('18020762', 'linhlinh.torres.reus@gmail.com', 'Nguyễn Thanh Tùng', 911782129),
-('18020763', 'linhlinh.torres.reus@gmail.com', 'Nguyễn Thanh Tùng', 911782129),
-('18020799', 'tung@gmail.com', 'Nguyễn Thanh Tùng', 911782129);
+('18101001', 'linhlinh.torres.reus@gmail.com', 'Nguyễn Thanh Tùng', 911782129),
+('1990000', 'tungThanh@gmail.com', 'Nguyễn Tùng', 9090909);
 
 -- --------------------------------------------------------
 
@@ -238,13 +237,13 @@ ALTER TABLE `teacher`
 -- AUTO_INCREMENT for table `challenges`
 --
 ALTER TABLE `challenges`
-  MODIFY `challenge` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `challenge` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `exercise`
 --
 ALTER TABLE `exercise`
-  MODIFY `codeOfExercise` int(15) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `codeOfExercise` int(15) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- Constraints for dumped tables

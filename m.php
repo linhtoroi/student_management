@@ -38,7 +38,9 @@
         color:red;
     }
     .box-chat1{
-        scroll-behavior: smooth;
+        /* scroll-behavior: smooth; */
+        /* height:150px; */
+        overflow-y: scroll;
     }
     </style>
 </head>
@@ -54,7 +56,7 @@
     <div class="container">                                                                    <!--Tạo 1 cái div khung để chia các vùng-->
         <div style="width: 10%"></div>
         <div class="list" style="width: 50%">
-            <div class="box-chat1" style="height: 60%">
+            <div class="box-chat1" style="height: 60%; overflow-y: scroll;">
                 <?php
                     $servername = "localhost";                                                 // Khai báo database
                     $database = "student_management";
@@ -120,10 +122,11 @@
                         //echo "<br>".$date;
                         //echo "<br>".$data;
                         fwrite($file, $data);
-                        $page = $_SERVER['PHP_SELF'];
-                        $sec = "0.05";
-                        header("Refresh: $sec; url=$page");
-                        exit();
+                ?>
+                <script>
+                    location.replace("m.php");
+                </script>
+                <?php 
                     }
                     if(!empty($_POST['delete'])) {                                          // Nếu có $_POST delete tin nhắn
                         //echo $_POST['string'];
@@ -135,11 +138,11 @@
 
                         //Recorded in a file
                         file_put_contents("message/".$fileMessage, implode("", $file_out));
-                        $page = $_SERVER['PHP_SELF'];
-                        $sec = "0.01";
-                        header("Refresh: $sec; url=$page");
-                        exit();
-                        
+                ?>
+                <script>
+                    location.replace("m.php");
+                </script>
+                <?php        
                     }                 
                 ?>
             </div>
@@ -175,18 +178,22 @@
                         $lines = file($myFile);
                         $lines[$row_number] = $data."\n";
                         file_put_contents($myFile , implode("", $lines));
-                        $page = $_SERVER['PHP_SELF'];
-                        $sec = "0.01";
-                        header("Refresh: $sec; url=$page");
-                        exit();
+                ?>
+                <script>
+                    location.replace("m.php");
+                </script>
+                <?php 
                     }
                     if(!empty($_POST['signOut'])){
                         echo "lalalal";
                         if($conn)
                             mysqli_close($conn);                                                          // Đóng CSDL
                         session_destroy();
-                        header("location:/student_management/signIn.html");
-                        exit();
+                ?>
+                <script>
+                    location.replace("signIn.html");
+                </script>
+                <?php   
                     }
                 ?>
             </div>

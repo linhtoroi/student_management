@@ -7,7 +7,7 @@
     if (!$conn) {                                                              // Check connection
         die("Connection failed: " . mysqli_connect_error());
     }
-
+    echo $_POST['account'];
     $account = $_POST['account'];
     $passwordOfUser = $_POST['password'];
     $email = $_POST['email'];
@@ -15,23 +15,50 @@
     $phoneNumber = $_POST['phoneNumber'];
 
     
+    $sql = "INSERT INTO person (account, passwordOfUser) 
+            VALUES ('$account', '$passwordOfUser');";                        // Truy vấn CSDL
     
-    $sql1 = "INSERT INTO person (account, passwordOfUser) 
-            VALUES ('$account', '$passwordOfUser')";                        // Truy vấn CSDL
-    $sql = "INSERT INTO student(account, email, fullName, phoneNumber) 
+
+    if ($conn->query($sql) === TRUE)  {         // Thực hiện thêm record
+        
+    }else{
+        ?>
+        <script>
+            location.replace("signUp.html");                                     // Không hoàn thành thì điều hướng lại về trang edit    
+        </script>
+        <?php  
+    }
+    $conn->close();   
+    $servername = "localhost";                                                 // Khai báo database
+    $database = "student_management";
+    $username = "root";
+    $password = ""; 
+    $conn = mysqli_connect($servername, $username, $password, $database);      // Create connection
+    if (!$conn) {                                                              // Check connection
+        die("Connection failed: " . mysqli_connect_error());
+    }
+    // echo $account;
+    // echo $email;
+    // echo $fullName;
+    // echo $phoneNumber;
+    $sqll = "INSERT INTO student (account, email, fullName, phoneNumber) 
             VALUES ('$account', '$email', '$fullName', '$phoneNumber')";    // Truy vấn CSDL
-
-if ($conn->query($sql1) === TRUE && $conn->query($sql) === TRUE)  {         // Thực hiện thêm record
-    session_start();
-    $_SESSION['account'] = $account;
-    $_SESSION['isTeacher'] = 0;
-    header("Location: /student_management/listOfUsers.php", true, 301);     // Hoàn thành thì điều hướng lại về trang riêng của account đó
-    exit();
-} else {
-    //header("Location: /student_management/signUp.php", true, 301);          // Không hoàn thành thì điều hướng lại về trang edit    
-    //exit();
-    echo "Có thể do bạn tạo account trùng account đã có, hãy quay lại signUp để tạo lại nhé";   // Do điều hướng cứ bị lỗi ạ T_T                        
-}   
-
-$conn->close();                                                             // Ngắt kết nối CSDL
+    if($conn->query($sqll) == TRUE){
+        session_start();
+        $_SESSION['account'] = $account;
+        $_SESSION['isTeacher'] = 0; 
+        echo "thêm record thành công";
+    ?>
+    <script>
+        location.replace("listOfUsers.php");                                // Hoàn thành thì điều hướng lại về trang riêng của account đó
+    </script>
+        <?php
+    } else {        
+        ?>
+        <script>
+            location.replace("signUp.html");                                     // Không hoàn thành thì điều hướng lại về trang edit    
+        </script>
+        <?php                     
+    }   
+    $conn->close();                                                             // Ngắt kết nối CSDL
 ?>

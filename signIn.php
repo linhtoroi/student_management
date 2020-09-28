@@ -32,17 +32,29 @@
                 }
                 $_SESSION['account'] = $account;
                 echo $row['passwordOfUser'];
-                header("Location: /student_management/listOfUsers.php", true, 301); // Điều hướng đến trang chủ
+                ?>
+                <script>
+                    location.replace("listOfUsers.php");
+                </script>
+                <?php // Điều hướng đến trang chủ
             }
             else if($account == $row['account'] && $passwordOfUser != $row['passwordOfUser']){
                 $_SESSION['status'] = 2;                                        // Tình trạng sai mật khẩu
                 $_SESSION['account'] = $account;
-                header("Location: /student_management/signInForm.php", true, 301); // Điều hướng quay lại trang đăng nhập
+                ?>
+                <script>
+                    location.replace("signIn.html");                            // Điều hướng quay lại trang đăng nhập
+                </script>
+                <?php 
             }
         }
     }
     if ($_SESSION['status'] == 0){                                              // Tình trạng chưa tìm thấy account này trong danh sách     
-        header("Location: /student_management/signInForm.php", true, 301);      // Điều hướng quay lại trang đăng nhập
+        ?>
+        <script>
+            location.replace("signInForm.php");                                 // Điều hướng quay lại trang đăng nhập
+        </script>
+        <?php      
     } 
 
     $conn->close();                                                             // Ngắt kết nối CSDL

@@ -124,8 +124,9 @@
                             FROM `challenges`";                                     // Đếm số challenge có trong CSDL
                     $result = $conn->query($sql);
                     $row = $result->fetch_assoc();
-
-                    $challenge = $row['countOfChallenge'] + 1;                      // Gán biến mã challenge bằng số challenge đếm được + 1
+                    $r = mysqli_query($conn, "SHOW TABLE STATUS LIKE 'challenges'");
+                    $row2 = mysqli_fetch_assoc($r);
+                    $challenge = $row2['Auto_increment'];                      // Gán biến mã challenge bằng số challenge đếm được + 1
                     move_uploaded_file($_FILES['file']['tmp_name'], 'challenge/' . $challenge .'_'. $_FILES['file']['name']);     // upload file
             
                     $account = $_SESSION['account'];
@@ -194,6 +195,7 @@
                 $name = "";
                 $path = "challenge";
                 
+                
 
                 if(file_exists($path) && is_dir($path)){                        // Kiểm tra thư mục có tồn tại hay không
                     $result = scandir($path);                                   // Quét tất cả các file trong thư mục
@@ -212,9 +214,12 @@
                                         echo '<div class="result" >'."Right!!!".'</div><br>';
                                         $fileMessage = "$path/$file";                            // Tên file mò được
                                         $file = @fopen($fileMessage, 'r+');                      // Mở file gán đường dẫn vào biến $file
-                                        if (!$file){                                       
-                                            header("Location: /student_management/challenge.php", true, 301);
-                                            exit();
+                                        if (!$file){                                      
+                                            ?>
+                                            <script>
+                                                location.replace("challenge.php");
+                                            </script>
+                                            <?php
                                         }
                                         else {
                                             $cnt = 0;
@@ -260,8 +265,11 @@
             if($conn)
                 mysqli_close($conn);                                                          // Đóng CSDL
             session_destroy();
-            header("location:/student_management/signIn.html");
-            exit();
+            ?>
+            <script>
+                location.replace("signIn.html");
+            </script>
+            <?php
         }
     ?>
 </body>

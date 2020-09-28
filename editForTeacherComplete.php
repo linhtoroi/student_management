@@ -25,9 +25,17 @@
             WHERE account = '$account';";                                       // Truy vấn CSDL
 
     if ($conn->query($sql1) === TRUE && $conn->query($sql) === TRUE)  {         // Thực hiện thêm record
-        header("Location: /student_management/listOfUsers.php?account=".$account, true, 301); // Hoàn thành thì điều hướng lại về trang riêng của account đó
+        ?>
+        <script>
+            location.replace("listOfUsers.php");                                // Hoàn thành thì điều hướng lại về trang riêng của account đó
+        </script>
+        <?php
     } else {
-        header("Location: /student_management/editForTeacher.php", true, 301);  // Không hoàn thành thì điều hướng lại về trang edit                               
+        ?>
+        <script>
+            location.replace("listOfUsers.php");                                    // Không hoàn thành thì điều hướng lại về trang edit     
+        </script>
+        <?php                       
     }   
 
     $conn->close();                                                             // Ngắt kết nối CSDL

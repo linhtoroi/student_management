@@ -89,8 +89,13 @@
 
     <?php
     if (isset($_POST['up']) && isset($_FILES['file'])) {
-        if ($_FILES['file']['error'] > 0)
-        header("Location: /student_management/upload.php", true, 301);
+        if ($_FILES['file']['error'] > 0){
+        ?>
+        <script>
+            location.replace("upload.php");
+        </script>
+        <?php
+        }
         else {
             move_uploaded_file($_FILES['file']['tmp_name'], 'exercise/' . $_FILES['file']['name']);
 
@@ -111,9 +116,17 @@
                     VALUES ('$a', NULL, 'haha', '$name', '$type')";
 
             if ($conn->query($sql) === TRUE)  {
-                header("Location: /student_management/exercise.php", true, 301);
+                ?>
+                <script>
+                    location.replace("exercise.php");
+                </script>
+                <?php
             } else {
-                header("Location: /student_management/exercise.php", true, 301);
+                ?>
+                <script>
+                    location.replace("exercise.php");
+                </script>
+                <?php
             }
 
         }
@@ -123,8 +136,11 @@
         if($conn)
             mysqli_close($conn);                                                          // Đóng CSDL
         session_destroy();
-        header("location:/student_management/signIn.html");
-        exit();
+        ?>
+        <script>
+            location.replace("signIn.html");
+        </script>
+        <?php
     }
     ?>
 

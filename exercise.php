@@ -76,7 +76,11 @@
         echo $html;
         if ($_SESSION['isTeacher'] == 1){                                           // Nếu account hiện thời là giáo viên
             if (!empty($_POST['upload'])){                                          // Nếu trả về giá trị $_POST upload thì điều hướng đến trang upload
-                header("Location: /student_management/upload.php", true, 301);
+                ?>
+                <script>
+                    location.replace("upload.php");
+                </script>
+                <?php
             }
             if(!empty($_GET['accountTeacher'])){                                    // Nếu có giá trị $_GET teacher trả về tức là ta đã vào 1 trang bài tập nào đó để xem chí tiết
                 if ($_GET['accountTeacher'] == $_SESSION['account']){               // Nếu account đó trùng với account người dùng bây giờ thì giáo viên đó sẽ được xem
@@ -132,7 +136,11 @@
                 echo $html1;
                 if (isset($_POST['uploadAgain']) && isset($_FILES['file'])) {                          // Nếu button nộp lại bài được ấn và nhận được $_FILES
                     if ($_FILES['file']['error'] > 0){                                                 // Nếu lỗi thì điều hướng lại trang cũ
-                        header("Location: /student_management/exercise.php?codeOfExercise=".$_GET["codeOfExercise"], true, 301);
+                        ?>
+                        <script>
+                            location.replace("exercise.php?codeOfExercise=".$_GET["codeOfExercise"]);
+                        </script>
+                        <?php
                     }
                     else {                                                                             // Không lỗi
                         move_uploaded_file($_FILES['file']['tmp_name'], 'exercise/' . $_FILES['file']['name']); // Chuyển file từ đường link tạm thời vào đường link mình muốn
@@ -143,10 +151,18 @@
                         SET  completedExercise = '$name', fileEnding = '$type' 
                         WHERE accountStudent = '$a'";                                                  // Update lại CSDL
                         if ($conn->query($sql) === TRUE)  {                                            // Được hay không cũng điều hướng lại trang cũ
-                            header("Location: /student_management/exercise.php?codeOfExercise=".$_GET["codeOfExercise"], true, 301);
+                            ?>
+                            <script>
+                                location.replace("exercise.php?codeOfExercise=".$_GET["codeOfExercise"]);
+                            </script>
+                            <?php
                         } 
                         else {
-                            header("Location: /student_management/exercise.php?codeOfExercise=".$_GET["codeOfExercise"], true, 301);
+                            ?>
+                            <script>
+                                location.replace("exercise.php?codeOfExercise=".$_GET["codeOfExercise"]);
+                            </script>
+                            <?php
                         }    
                     }
                 }
@@ -165,7 +181,11 @@
                 echo $html1;
                 if (isset($_POST['up1st']) && isset($_FILES['file'])) {                                // Nếu button nộp bài được ấn và nhận được $_FILES
                     if ($_FILES['file']['error'] > 0){                                                 // Nếu lỗi thì điều hướng lại trang cũ
-                        header("Location: /student_management/exercise.php?codeOfExercise=".$_GET["codeOfExercise"], true, 301);
+                        ?>
+                        <script>
+                            location.replace("exercise.php?codeOfExercise=".$_GET["codeOfExercise"]);
+                        </script>
+                        <?php
                     }
                     else {                                                                             // Không lỗi
                         move_uploaded_file($_FILES['file']['tmp_name'], 'exercise/' . $_FILES['file']['name']); // Chuyển file từ đường link tạm thời vào đường link mình muốn
@@ -175,10 +195,18 @@
                         $sql = "INSERT INTO `homework` (`accountStudent`, `codeOfExercise`, `completedExercise`, `time`, `mark`, `fileEnding`) 
                                 VALUES ('$a', '$codeOfExercise', '$name', current_timestamp(), NULL, '$type')"; // Update lại CSDL
                         if ($conn->query($sql) === TRUE)  {                                            // Được hay không cũng điều hướng lại trang cũ
-                            header("Location: /student_management/exercise.php?codeOfExercise=".$_GET["codeOfExercise"], true, 301);
+                            ?>
+                            <script>
+                                location.replace("exercise.php?codeOfExercise=".$_GET["codeOfExercise"]);
+                            </script>
+                            <?php
                         } 
                         else {
-                            header("Location: /student_management/exercise.php?codeOfExercise=".$_GET["codeOfExercise"], true, 301);
+                            ?>
+                            <script>
+                                location.replace("exercise.php?codeOfExercise=".$_GET["codeOfExercise"]);
+                            </script>
+                            <?php
                         }
                     
                     }
@@ -192,8 +220,11 @@
         if($conn)
             mysqli_close($conn);                                                          // Đóng CSDL
         session_destroy();
-        header("location:/student_management/signIn.html");
-        exit();
+        ?>
+        <script>
+            location.replace("signIn.html");
+        </script>
+        <?php
     }
     ?>
 </body>

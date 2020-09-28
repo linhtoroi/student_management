@@ -50,7 +50,11 @@
 <?php
     if (!empty($_POST['sign-up'])){
         echo $_POST['sign-up'];
-        header("Location: /student_management/signUp.html", true, 301);
+        ?>
+        <script>
+            location.replace("signUp.html");
+        </script>
+        <?php
     }
 ?>
 <div style="display: flex">

@@ -1,5 +1,3 @@
-<!--Em đã hoàn thành các chức năng nhưng nhiều khi điều hướng trang còn bị lỗi ạ T_T... Cũng do 1 phần em tự code theo ý tưởng của mình nên nó bị lộn xộn ạ
-Nên em google không ra được cách sửa ạ T_T-->
 <head>
     <meta charset="utf-8">
     <link rel="stylesheet" href="mains.css">
@@ -37,9 +35,17 @@ Nên em google không ra được cách sửa ạ T_T-->
                 die("Connection failed: " . mysqli_connect_error());
             }
 
-            if ($_SESSION['isTeacher'] == 1 && !empty($_GET['account'])){              // Nếu account hiện thời là giáo viên và đang vào trang xem riêng từng account khác            
-                    echo "<div class='edit'><a href='editForTeacher.php'><img src='image/user.png' alt='EDIT' style='float:right;width:100px;height:100px;'></a></div>"; // Sẽ có nút Edit hiện ra để chỉnh sửa
-                    $_SESSION['accountEdit'] = $_GET['account'];                       // Lưu account để chỉnh sửa vào $_SESSION
+            if ($_SESSION['isTeacher'] == 1 && !empty($_GET['account'])){              // Nếu account hiện thời là giáo viên và đang vào trang xem riêng từng account khác     
+                $a = $_GET['account'];
+                $sql2 = "SELECT account
+                        FROM student
+                        WHERE account='$a';";
+                $result = $conn->query($sql2);
+                if($result->num_rows > 0){
+                    echo "<div style='display:flex'><div class='edit'><a href='editForTeacher.php'><img src='image/user.png' alt='EDIT' style='width:100px;height:100px;'></a></div>"; // Sẽ có nút Edit hiện ra để chỉnh sửa
+                    echo "<div class='edit'><a href='delete.php'><img src='image/settings.png' alt='DELETE' style='width:100px;height:100px;'></a></div></div>";
+                }
+                $_SESSION['accountEdit'] = $_GET['account'];                       // Lưu account để chỉnh sửa vào $_SESSION
             }
             else if ($_SESSION['isTeacher'] == 0 && !empty($_GET['account'])){         // Nếu account hiện thời là sinh viên
                 if($_GET['account'] == $_SESSION['account']){                          // và đang vào xem trang cá nhân của mình
@@ -194,8 +200,11 @@ Nên em google không ra được cách sửa ạ T_T-->
                 if($conn)
                     mysqli_close($conn);                                                          // Đóng CSDL
                 session_destroy();
-                header("location:/student_management/signIn.html");
-                exit();
+                ?>
+                <script>
+                    location.replace("signIn.html");
+                </script>
+                <?php
             }
         ?>
     </div>
