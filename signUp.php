@@ -32,6 +32,7 @@
     </script>
     <?php
     }else{
+        echo "<a href='signUp.html'>Quay lại trang sign up, hãy tạo acccount khác</a>"
         ?>
         <script>
             //location.replace("signUp.html");                                     // Không hoàn thành thì điều hướng lại về trang edit    
