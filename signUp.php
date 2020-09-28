@@ -17,33 +17,11 @@
     
     $sql = "INSERT INTO person (account, passwordOfUser) 
             VALUES ('$account', '$passwordOfUser');";                        // Truy vấn CSDL
-    
-
-    if ($conn->query($sql) === TRUE)  {         // Thực hiện thêm record
-        
-    }else{
-        ?>
-        <script>
-            location.replace("signUp.html");                                     // Không hoàn thành thì điều hướng lại về trang edit    
-        </script>
-        <?php  
-    }
-    $conn->close();   
-    $servername = "localhost";                                                 // Khai báo database
-    $database = "student_management";
-    $username = "root";
-    $password = ""; 
-    $conn = mysqli_connect($servername, $username, $password, $database);      // Create connection
-    if (!$conn) {                                                              // Check connection
-        die("Connection failed: " . mysqli_connect_error());
-    }
-    // echo $account;
-    // echo $email;
-    // echo $fullName;
-    // echo $phoneNumber;
     $sqll = "INSERT INTO student (account, email, fullName, phoneNumber) 
             VALUES ('$account', '$email', '$fullName', '$phoneNumber')";    // Truy vấn CSDL
-    if($conn->query($sqll) == TRUE){
+
+    if ($conn->query($sql) == TRUE && $conn->query($sqll) == TRUE)  {         // Thực hiện thêm record
+        echo 'hihi';
         session_start();
         $_SESSION['account'] = $account;
         $_SESSION['isTeacher'] = 0; 
@@ -52,13 +30,15 @@
     <script>
         location.replace("listOfUsers.php");                                // Hoàn thành thì điều hướng lại về trang riêng của account đó
     </script>
-        <?php
-    } else {        
+    <?php
+    }else{
         ?>
         <script>
-            location.replace("signUp.html");                                     // Không hoàn thành thì điều hướng lại về trang edit    
+            //location.replace("signUp.html");                                     // Không hoàn thành thì điều hướng lại về trang edit    
         </script>
-        <?php                     
-    }   
+        <?php  
+    }
+
+
     $conn->close();                                                             // Ngắt kết nối CSDL
 ?>
