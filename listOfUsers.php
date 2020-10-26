@@ -202,7 +202,7 @@
                 session_destroy();
                 ?>
                 <script>
-                    location.replace("signIn.html");
+                    location.replace("login.php");
                 </script>
                 <?php
             }

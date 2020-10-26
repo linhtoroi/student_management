@@ -43,7 +43,7 @@
                 $_SESSION['account'] = $account;
                 ?>
                 <script>
-                    location.replace("signIn.html");                            // Điều hướng quay lại trang đăng nhập
+                    location.replace("login.php");                            // Điều hướng quay lại trang đăng nhập
                 </script>
                 <?php 
             }
@@ -59,3 +59,4 @@
 
     $conn->close();                                                             // Ngắt kết nối CSDL
 ?>
+
